@@ -20,7 +20,7 @@ export enum BulldozerDirection {
 export type SiteClearingSimulatorState = {
   map: SiteCellType[][];
   isStarted: boolean;
-  isStopped: boolean;
+  stopReason: string;
   isPreservedTreeRemoved: boolean;
   bulldozerPosition: Point2D;
   bulldozerDirection: BulldozerDirection;
@@ -36,7 +36,7 @@ export type SiteClearingSimulatorState = {
 const initialState: SiteClearingSimulatorState = {
   map: [],
   isStarted: false,
-  isStopped: false,
+  stopReason: '',
   bulldozerDirection: BulldozerDirection.Right,
   bulldozerPosition: {
     x: -1,
@@ -83,7 +83,7 @@ const siteClearingSimulatorSlice = createSlice({
       }
     },
     stopSimulation(state) {
-      state.isStopped = true;
+      state.stopReason = 'Simulation was stopped by the user';
     },
     moveForward(state) {
       const {bulldozerPosition, bulldozerDirection} = state;
