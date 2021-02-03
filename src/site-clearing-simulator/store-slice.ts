@@ -2,6 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export type SiteCellType = "o" | "t" | "r" | "T" | "B" | "C";
 
+export type Point2D = {
+  x: number;
+  y: number;
+}
+
 export enum BulldozerDirection {
   Up = 1,
 
@@ -17,10 +22,7 @@ export type SiteClearingSimulatorState = {
   isStarted: boolean;
   isStopped: boolean;
   isPreservedTreeRemoved: boolean;
-  bulldozerPosition: {
-    x: number;
-    y: number;
-  };
+  bulldozerPosition: Point2D;
   bulldozerDirection: BulldozerDirection;
   fuelUsed: number;
 };
@@ -44,23 +46,58 @@ const initialState: SiteClearingSimulatorState = {
   fuelUsed: 0,
 };
 
+const getNextPoint = ({ x, y }: Point2D, direction: BulldozerDirection): Point2D => {
+  switch (direction) {
+    case BulldozerDirection.Up:
+      return {
+        x: x - 1,
+        y,
+      }
+    case BulldozerDirection.Right:
+      return {
+        x,
+        y: y + 1,
+      }
+    case BulldozerDirection.Down:
+      return {
+        x: x + 1,
+        y
+      }
+    case BulldozerDirection.Left:
+      return {
+        x,
+        y: y - 1
+      }
+  }
+};
+
 const siteClearingSimulatorSlice = createSlice({
   name: "siteClearingSimulator",
   initialState,
   reducers: {
-    startSimulation(state, action) {},
-    stopSimulation() {},
+    startSimulation(_, action) {
+      return {
+        ...initialState,
+        map: action.payload,
+        isStarted: true,
+      }
+    },
+    stopSimulation(state) {
+      state.isStopped = true;
+    },
     moveForward(state) {
-      return state;
+      const {bulldozerPosition, bulldozerDirection} = state;
+      const {x, y} = getNextPoint(bulldozerPosition, bulldozerDirection);
+
+      state.map[x][y] = 'B';
+      state.bulldozerPosition.x = x;
+      state.bulldozerPosition.y = y; 
     },
     rotateLeft(state) {
-      return state;
+      state.bulldozerDirection -= 1;
     },
     rotateRight(state) {
-      return state;
-    },
-    setMap(state, action) {
-      return state;
+      state.bulldozerDirection += 1;
     },
   },
 });
@@ -71,7 +108,6 @@ export const {
   moveForward,
   rotateLeft,
   rotateRight,
-  setMap,
 } = siteClearingSimulatorSlice.actions;
 
 export default siteClearingSimulatorSlice.reducer;

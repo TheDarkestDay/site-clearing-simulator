@@ -78,7 +78,8 @@ describe('Site clearing simulator store slice', () => {
         const state = {
           isStarted: true,
           map: siteMapInProgress,
-          bulldozerPosition: { x: 1, y: 1 }
+          bulldozerPosition: { x: 1, y: 1 },
+          bulldozerDirection: BulldozerDirection.Up,
         };
         const { map, bulldozerPosition: { x, y } } = siteClearingSimulatorReducer(
           getTestState(state),
@@ -93,8 +94,8 @@ describe('Site clearing simulator store slice', () => {
       it('should correctly move bulldozer to the right', () => {
         const state = {
           isStarted: true,
+          map: siteMapInProgress,
           bulldozerPosition: { x: 1, y: 1 },
-          bulldozerDirection: BulldozerDirection.Right,
         };
         const { map, bulldozerPosition: { x, y } } = siteClearingSimulatorReducer(
           getTestState(state),
@@ -110,6 +111,7 @@ describe('Site clearing simulator store slice', () => {
         const state = {
           isStarted: true,
           bulldozerPosition: { x: 1, y: 1 },
+          map: siteMapInProgress,
           bulldozerDirection: BulldozerDirection.Down,
         };
         const { map, bulldozerPosition: { x, y } } = siteClearingSimulatorReducer(
@@ -119,13 +121,14 @@ describe('Site clearing simulator store slice', () => {
 
         expect(x).toEqual(2);
         expect(y).toEqual(1);
-        expect(map[2][0]).toEqual('B');
+        expect(map[2][1]).toEqual('B');
       });
 
       it('should correctly move bulldozer to the left', () => {
         const state = {
           isStarted: true,
           bulldozerPosition: { x: 1, y: 1 },
+          map: siteMapInProgress,
           bulldozerDirection: BulldozerDirection.Left,
         };
         const { map, bulldozerPosition: { x, y } } = siteClearingSimulatorReducer(
