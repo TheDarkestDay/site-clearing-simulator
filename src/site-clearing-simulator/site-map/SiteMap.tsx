@@ -7,7 +7,6 @@ import styles from './styles.module.css';
 
 export const SiteMap = () => {
   const siteRows = useSelector(getSiteMap);
-  console.log(siteRows);
 
   return (
     <Card>

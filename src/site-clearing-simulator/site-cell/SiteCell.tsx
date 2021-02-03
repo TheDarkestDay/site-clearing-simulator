@@ -16,6 +16,8 @@ const getCellContent = (cellType: SiteCellType) => {
       return '🌳';
     case 'T':
       return '🎄';
+    case 'B':
+      return '🚜';
   }
 };
 
