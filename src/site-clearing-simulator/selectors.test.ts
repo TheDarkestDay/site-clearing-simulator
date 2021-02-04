@@ -1,17 +1,52 @@
+import { getFuelCost, getUnclearedCellsCost, isBulldozerOnStartingPosition } from './selectors';
+import { getTestState } from './test-helpers';
+
 describe('Site clearing simulator selectors', () => {
-  it('should correctly calculate expenses on the uncleared lands after the simulation ends', () => {
+  describe('getFuelCost', () => {
+    it('should correctly calculate total fuel cost', () => {
+      const testState = getTestState({
+        fuelUsed: 6
+      });
 
+      expect(getFuelCost({ siteClearingSimulator: testState })).toEqual(6);
+    });
   });
 
-  it('should correctly calculate charges for preservable tree removal', () => {
+  describe('getUnclearCellsCost', () => {
+    it('should correctly calculate cost of uncleared cells', () => {
+      const testState = getTestState({
+        map: [
+          ['C', 'C', 'T'],
+          ['r', 'B', 'r'],
+          ['t', 't', 't'],
+        ]
+      });
 
+      expect(getUnclearedCellsCost({ siteClearingSimulator: testState })).toEqual(15);
+    });
   });
 
-  it('should correctly calculate used fuel cost', () => {
+  describe('isBulldozerOnStartingPosition', () => {
+    it('should correctly indicate that bulldozer is on its starting position', () => {
+      const testState = getTestState();
 
-  });
+      expect(isBulldozerOnStartingPosition({ siteClearingSimulator: testState })).toEqual(true);
+    });
 
-  it('should correctly calculate the total cost', () => {
+    it('should correctly indicate that bulldozer is not on its starting position', () => {
+      const testState = getTestState({
+        map: [
+          ['C', 'C', 'T'],
+          ['r', 'B', 'r'],
+          ['t', 't', 't'],
+        ],
+        bulldozerPosition: {
+          x: 1,
+          y: 1
+        }
+      });
 
+      expect(isBulldozerOnStartingPosition({ siteClearingSimulator: testState })).toEqual(false);
+    });
   });
 });

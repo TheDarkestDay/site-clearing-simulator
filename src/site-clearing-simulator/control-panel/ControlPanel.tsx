@@ -1,10 +1,18 @@
-import { Button, Card } from '@material-ui/core';
+import { Card, Fab } from '@material-ui/core';
+import { NavigationOutlined, RedoOutlined, StopOutlined, UndoOutlined } from '@material-ui/icons';
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { isSimulationStopped } from '../selectors';
 import { moveForward, rotateRight, rotateLeft } from '../store-slice';
+import styles from './styles.module.css';
 
-export const ControlPanel = () => {
+type Props = {
+  className: string;
+}
+
+export const ControlPanel = ({ className }: Props) => {
   const dispatch = useDispatch();
+  const isDisabled = useSelector(isSimulationStopped);
 
   const handleMoveForwardClick = () => {
     dispatch(moveForward());
@@ -19,18 +27,30 @@ export const ControlPanel = () => {
   };
 
   return (
-    <Card>
-      <Button variant="contained" onClick={handleRotateLeftClick}>
-        Rotate left
-      </Button>
+    <Card className={`${styles.controlPanel} ${className}`}>
+      <div className={styles.controlButton}>
+        <Fab color="primary" onClick={handleRotateLeftClick} disabled={isDisabled}>
+          <UndoOutlined />
+        </Fab>
+      </div>
 
-      <Button variant="contained" onClick={handleMoveForwardClick}>
-        Move forward
-      </Button>
+      <div className={styles.controlButton}>
+        <Fab color="primary" onClick={handleMoveForwardClick} disabled={isDisabled}>
+          <NavigationOutlined />
+        </Fab>
+      </div>
 
-      <Button variant="contained" onClick={handleRotateRightClick}>
-        Rotate right
-      </Button>
+      <div className={styles.controlButton}>
+        <Fab color="primary" onClick={handleRotateRightClick} disabled={isDisabled}>
+          <RedoOutlined />
+        </Fab>
+      </div>
+
+      <div className={styles.controlButton}>
+        <Fab color="secondary" disabled={isDisabled}>
+          <StopOutlined />
+        </Fab>
+      </div>
     </Card>
   );
 };

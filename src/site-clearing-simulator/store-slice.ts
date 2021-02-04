@@ -17,6 +17,11 @@ export enum BulldozerDirection {
   Left = 4,
 }
 
+export type EventLogEntry = {
+  type: string;
+  description: string;
+};
+
 export type SiteClearingSimulatorState = {
   map: SiteCellType[][];
   isStarted: boolean;
@@ -25,6 +30,7 @@ export type SiteClearingSimulatorState = {
   bulldozerPosition: Point2D;
   bulldozerDirection: BulldozerDirection;
   fuelUsed: number;
+  eventsLog: EventLogEntry[];
 };
 
 const initialState: SiteClearingSimulatorState = {
@@ -38,6 +44,7 @@ const initialState: SiteClearingSimulatorState = {
   },
   isPreservedTreeRemoved: false,
   fuelUsed: 0,
+  eventsLog: [],
 };
 
 const getNextPoint = ({ x, y }: Point2D, direction: BulldozerDirection): Point2D => {
@@ -119,7 +126,7 @@ const siteClearingSimulatorSlice = createSlice({
         return state;
       }
 
-      state.fuelUsed = getCellClearingFuelCost(cellToClear);
+      state.fuelUsed += getCellClearingFuelCost(cellToClear);
 
       const {x: previousX, y: previousY} = bulldozerPosition;
       state.map[previousX][previousY] = 'C';
@@ -127,6 +134,14 @@ const siteClearingSimulatorSlice = createSlice({
       state.map[nextX][nextY] = 'B';
       state.bulldozerPosition.x = nextX;
       state.bulldozerPosition.y = nextY; 
+
+      const isThereAnyLandToClear = state.map
+        .reduce((total, row) => total.concat(row), [])
+        .some((cell) => cell === 'o' || cell === 'r' || cell === 't');
+
+      if (!isThereAnyLandToClear) {
+        state.stopReason = 'Simulation stopped. Site map is fully cleared';
+      }
     },
     rotateLeft(state) {
       state.bulldozerDirection -= 1;

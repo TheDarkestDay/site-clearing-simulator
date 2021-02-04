@@ -1,4 +1,5 @@
 import React from 'react';
+import { Bulldozer } from '../bulldozer/Bulldozer';
 import { SiteCellType } from '../store-slice';
 import styles from './styles.module.css';
 
@@ -16,8 +17,10 @@ const getCellContent = (cellType: SiteCellType) => {
       return '🌳';
     case 'T':
       return '🎄';
+    case 'C':
+      return '✔️';
     case 'B':
-      return '🚜';
+      return <Bulldozer />;
   }
 };
 

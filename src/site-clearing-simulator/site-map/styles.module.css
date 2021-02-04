@@ -1,5 +1,16 @@
 .siteMapWrapper {
-  
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bulldozerStartingPosition {
+  align-self: flex-start;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  margin: 2px;
 }
 
 .siteMap {

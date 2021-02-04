@@ -5,10 +5,10 @@ import {
   rotateLeft,
   rotateRight,
   SiteCellType,
-  SiteClearingSimulatorState,
   startSimulation,
   stopSimulation,
 } from "./store-slice";
+import { getTestState } from './test-helpers';
 
 describe("Site clearing simulator store slice", () => {
   describe("reducer", () => {
@@ -23,24 +23,6 @@ describe("Site clearing simulator store slice", () => {
       ["r", "B", "r"],
       ["t", "t", "t"],
     ];
-
-    const getTestState = (
-      overrides: Partial<SiteClearingSimulatorState> = {}
-    ): SiteClearingSimulatorState => {
-      return {
-        map: [],
-        isStarted: false,
-        bulldozerDirection: BulldozerDirection.Right,
-        stopReason: "",
-        bulldozerPosition: {
-          x: 0,
-          y: -1,
-        },
-        isPreservedTreeRemoved: false,
-        fuelUsed: 0,
-        ...overrides,
-      };
-    };
 
     it("should allow to start simulation", () => {
       const { isStarted } = siteClearingSimulatorReducer(

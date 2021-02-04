@@ -1,0 +1,24 @@
+.simulatorWindowGrid {
+  display: grid;
+  grid-template-areas: 
+    'map map report'
+    'map map log'
+    'controlPanel controlPanel log';
+  grid-gap: 16px;
+}
+
+.siteMap {
+  grid-area: map;
+}
+
+.expensesReport {
+  grid-area: report;
+}
+
+.eventsLog {
+  grid-area: log;
+}
+
+.controlPanel {
+  grid-area: controlPanel;
+}

@@ -6,6 +6,11 @@ import App from './app/App';
 import reportWebVitals from './reportWebVitals';
 import { store } from './store';
 
+// TODO: Barrels
+// TODO: Fix tests
+// TODO: Preservable tree fine
+// TODO: File uploading
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
