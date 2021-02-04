@@ -1,11 +1,11 @@
 import React from 'react';
-import { SiteMap } from '../site-clearing-simulator';
+import { SiteClearingSimulator } from '../site-clearing-simulator/site-clearing-simulator/SiteClearingSimulator';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <SiteMap />
+      <SiteClearingSimulator />
     </div>
   );
 }

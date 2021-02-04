@@ -27,19 +27,13 @@ export type SiteClearingSimulatorState = {
   fuelUsed: number;
 };
 
-// ["o", "o", "t", "o", "o", "o", "o", "o", "o", "o"],
-//     ["o", "o", "o", "o", "o", "o", "o", "T", "o", "o"],
-//     ["r", "r", "r", "o", "o", "o", "t", "T", "o", "o"],
-//     ["r", "r", "r", "r", "o", "o", "o", "o", "o", "o"],
-//     ["r", "r", "r", "r", "r", "t", "o", "o", "o", "o"]
-
 const initialState: SiteClearingSimulatorState = {
   map: [],
   isStarted: false,
   stopReason: '',
   bulldozerDirection: BulldozerDirection.Right,
   bulldozerPosition: {
-    x: -1,
+    x: 0,
     y: -1,
   },
   isPreservedTreeRemoved: false,
@@ -71,6 +65,27 @@ const getNextPoint = ({ x, y }: Point2D, direction: BulldozerDirection): Point2D
   }
 };
 
+const getCellClearingFuelCost = (cellType: SiteCellType): number => {
+  switch (cellType) {
+    case 'o':
+    case 'C':
+      return 1;
+    case 'r':
+    case 't':
+      return 2;
+    default:
+      throw new Error('Clearing of a cell with bulldozer or preservable tree is not allowed');
+  }
+};
+
+const isPointOutOfBounds = ({x, y}: Point2D, map: SiteCellType[][]): boolean => {
+  const [firstRow] = map;
+  const maxX = map.length;
+  const maxY = firstRow.length;
+
+  return x < 0 || x >= maxX || y < 0 || y >= maxY; 
+};
+
 const siteClearingSimulatorSlice = createSlice({
   name: "siteClearingSimulator",
   initialState,
@@ -87,11 +102,31 @@ const siteClearingSimulatorSlice = createSlice({
     },
     moveForward(state) {
       const {bulldozerPosition, bulldozerDirection} = state;
-      const {x, y} = getNextPoint(bulldozerPosition, bulldozerDirection);
+      const nextPoint = getNextPoint(bulldozerPosition, bulldozerDirection);
 
-      state.map[x][y] = 'B';
-      state.bulldozerPosition.x = x;
-      state.bulldozerPosition.y = y; 
+      if (isPointOutOfBounds(nextPoint, state.map)) {
+        state.stopReason = 'Bulldozer was moved out of site bounds';
+
+        return state;
+      }
+
+      const {x: nextX, y: nextY} = nextPoint;
+      const cellToClear = state.map[nextX][nextY];
+      if (cellToClear === 'T') {
+        state.isPreservedTreeRemoved = true;
+        state.stopReason = 'An attempt to remove preservable tree was performed.';
+
+        return state;
+      }
+
+      state.fuelUsed = getCellClearingFuelCost(cellToClear);
+
+      const {x: previousX, y: previousY} = bulldozerPosition;
+      state.map[previousX][previousY] = 'C';
+
+      state.map[nextX][nextY] = 'B';
+      state.bulldozerPosition.x = nextX;
+      state.bulldozerPosition.y = nextY; 
     },
     rotateLeft(state) {
       state.bulldozerDirection -= 1;

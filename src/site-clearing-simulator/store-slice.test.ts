@@ -33,7 +33,7 @@ describe("Site clearing simulator store slice", () => {
         bulldozerDirection: BulldozerDirection.Right,
         stopReason: "",
         bulldozerPosition: {
-          x: -1,
+          x: 0,
           y: -1,
         },
         isPreservedTreeRemoved: false,
@@ -74,7 +74,7 @@ describe("Site clearing simulator store slice", () => {
         },
       });
 
-      const expectedState = getTestState({ map: siteMap });
+      const expectedState = getTestState({ map: siteMap, isStarted: true });
 
       const newState = siteClearingSimulatorReducer(
         originalState,
@@ -176,6 +176,7 @@ describe("Site clearing simulator store slice", () => {
     it("should correctly mark already visited cells", () => {
       const state = {
         isStarted: true,
+        map: siteMap,
         bulldozerPosition: { x: 1, y: 1 },
         bulldozerDirection: BulldozerDirection.Left,
       };
@@ -283,7 +284,9 @@ describe("Site clearing simulator store slice", () => {
           moveForward()
         );
 
-        expect(stopReason).toEqual(true);
+        expect(stopReason).toMatchInlineSnapshot(
+          `"An attempt to remove preservable tree was performed."`
+        );
       });
 
       it("should stop the simulation if bulldozer goes out of map bounds", () => {
@@ -303,7 +306,9 @@ describe("Site clearing simulator store slice", () => {
           moveForward()
         );
 
-        expect(stopReason).toEqual(true);
+        expect(stopReason).toMatchInlineSnapshot(
+          `"Bulldozer was moved out of site bounds"`
+        );
       });
 
       it("should stop automatically when there are no more fields to clear", () => {
