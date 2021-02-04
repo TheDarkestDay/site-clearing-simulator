@@ -1,6 +1,7 @@
 import { Card } from '@material-ui/core';
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { getRange } from '../../utils';
 import { Bulldozer } from '../bulldozer/Bulldozer';
 import { getSiteMap, isBulldozerOnStartingPosition } from '../selectors';
 import { SiteCell } from '../site-cell/SiteCell';
@@ -14,23 +15,43 @@ export const SiteMap = ({ className }: Props) => {
   const siteRows = useSelector(getSiteMap);
   const showBulldozerOnStartingPosition = useSelector(isBulldozerOnStartingPosition);
 
+  const rowsCount = siteRows.length;
+  const columnsCount = siteRows[0].length;
+
   return (
     <Card className={className}>
       <div className={styles.siteMapWrapper}>
         <div className={styles.bulldozerStartingPosition}>
-          { showBulldozerOnStartingPosition && <Bulldozer /> }
+          {showBulldozerOnStartingPosition && <Bulldozer />}
         </div>
 
-        <div className={styles.siteMap}>
-          {
-            siteRows.map((siteCells, i) => {
-              return <div key={i} className={styles.siteRow}>
-                {
-                  siteCells.map((siteCell, j) => <SiteCell key={`${i}-${j}`} type={siteCell} />)
-                }
-              </div>
-            })
-          }
+        <div className={styles.siteMapOuter}>
+          <div className={styles.siteMapXGuide}>
+            <div className={styles.siteMapGuideCell}></div>
+            {
+              getRange(rowsCount).map((xPosition) => <div className={styles.siteMapGuideCell} key={xPosition}>{xPosition}</div>)
+            }
+          </div>
+
+          <div>
+            <div className={styles.siteMapYGuide}>
+              {
+                getRange(columnsCount).map((yPosition) => <div className={styles.siteMapGuideCell} key={yPosition}>{yPosition}</div>)
+              }
+            </div>
+
+            <div className={styles.siteMapInner}>
+              {
+                siteRows.map((siteCells, i) => {
+                  return <div key={i} className={styles.siteRow}>
+                    {
+                      siteCells.map((siteCell, j) => <SiteCell key={`${i}-${j}`} type={siteCell} />)
+                    }
+                  </div>
+                })
+              }
+            </div>
+          </div>
         </div>
       </div>
     </Card>

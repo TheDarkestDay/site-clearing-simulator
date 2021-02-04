@@ -13,7 +13,7 @@
   margin: 2px;
 }
 
-.siteMap {
+.siteMapInner {
   padding: 2px;
 
   background-color: #000000;
@@ -21,4 +21,29 @@
 
 .siteRow {
   display: flex;
+}
+
+.siteMapOuter {
+  display: flex;
+}
+
+.siteMapYGuide {
+  display: flex;
+  padding: 2px;
+}
+
+.siteMapGuideCell {
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  margin: 2px;
+
+  font-size: 24px;
+  text-align: center;
+}
+
+.siteMapXGuide {
+  padding: 2px;
+  display: flex;
+  flex-direction: column;
 }
