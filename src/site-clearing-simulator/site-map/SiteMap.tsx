@@ -26,21 +26,22 @@ export const SiteMap = ({ className }: Props) => {
         </div>
 
         <div className={styles.siteMapOuter}>
-          <div className={styles.siteMapXGuide}>
-            <div className={styles.siteMapGuideCell}></div>
+          <div className={styles.siteMapYGuide}>
+            <div className={styles.siteMapDummyGuideCell} aria-hidden="true"></div>
+
             {
-              getRange(rowsCount).map((xPosition) => <div className={styles.siteMapGuideCell} key={xPosition}>{xPosition}</div>)
+              getRange(columnsCount).map((yPosition) => <div className={styles.siteMapYGuideCell} key={yPosition}>{yPosition}</div>)
             }
           </div>
 
-          <div>
-            <div className={styles.siteMapYGuide}>
+          <div className={styles.siteMapInner}>
+            <div className={styles.siteMapXGuide}>
               {
-                getRange(columnsCount).map((yPosition) => <div className={styles.siteMapGuideCell} key={yPosition}>{yPosition}</div>)
+                getRange(rowsCount).map((xPosition) => <div className={styles.siteMapXGuideCell} key={xPosition}>{xPosition}</div>)
               }
             </div>
 
-            <div className={styles.siteMapInner}>
+            <div className={styles.siteMapMainGrid}>
               {
                 siteRows.map((siteCells, i) => {
                   return <div key={i} className={styles.siteRow}>

@@ -13,7 +13,7 @@
   margin: 2px;
 }
 
-.siteMapInner {
+.siteMapMainGrid {
   padding: 2px;
 
   background-color: #000000;
@@ -25,6 +25,11 @@
 
 .siteMapOuter {
   display: flex;
+  flex-direction: column;
+}
+
+.siteMapInner {
+  display: flex;
 }
 
 .siteMapYGuide {
@@ -32,11 +37,18 @@
   padding: 2px;
 }
 
-.siteMapGuideCell {
-  width: 40px;
-  height: 40px;
-  padding: 8px;
-  margin: 2px;
+.siteMapYGuideCell {
+  width: 44px;
+
+  font-size: 24px;
+  text-align: center;
+}
+
+.siteMapXGuideCell {
+  display: flex;
+  align-items: center;
+  width: 24px;
+  height: 44px;
 
   font-size: 24px;
   text-align: center;
@@ -46,4 +58,8 @@
   padding: 2px;
   display: flex;
   flex-direction: column;
+}
+
+.siteMapDummyGuideCell {
+  width: 26px;
 }
