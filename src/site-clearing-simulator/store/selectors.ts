@@ -9,6 +9,8 @@ export const isSimulationStopped = (state: GlobalState) => state.siteClearingSim
 
 export const getBulldozerDirection = (state: GlobalState) => state.siteClearingSimulator.bulldozerDirection;
 
+export const isPreservedTreeRemoved = (state: GlobalState) => state.siteClearingSimulator.isPreservedTreeRemoved;
+
 export const isBulldozerOnStartingPosition = (state: GlobalState) => {
   const {siteClearingSimulator: { bulldozerPosition: {x, y} }} = state;
 
@@ -30,10 +32,20 @@ export const getUnclearedCellsCost = (state: GlobalState) => {
   return unclearedCellsCount * UNCLEARED_CELL_COST;
 };
 
+const PRESERVED_TREE_REMOVAL_CHARGE = 300;
+
 export const getTotalExpenses = createSelector(
   getFuelCost,
   getUnclearedCellsCost,
-  (fuelCost, unclearedCellsCost) => fuelCost + unclearedCellsCost 
+  isPreservedTreeRemoved,
+  (fuelCost, unclearedCellsCost, isPreservedTreeRemoved) => {
+    let total = fuelCost + unclearedCellsCost;
+    if (isPreservedTreeRemoved) {
+      total += PRESERVED_TREE_REMOVAL_CHARGE;
+    }
+
+    return total;
+  } 
 );
 
 export const getEvents = (state: GlobalState) => state.siteClearingSimulator.eventsLog;

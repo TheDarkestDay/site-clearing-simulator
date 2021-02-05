@@ -1,9 +1,33 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SiteCell should match snapshot for cell type T 1`] = `ShallowWrapper {}`;
+exports[`SiteCell should match snapshot for cell type T 1`] = `
+<div
+  className="siteCell"
+>
+  🎄
+</div>
+`;
 
-exports[`SiteCell should match snapshot for cell type o 1`] = `ShallowWrapper {}`;
+exports[`SiteCell should match snapshot for cell type o 1`] = `
+<div
+  className="siteCell"
+>
+  
+</div>
+`;
 
-exports[`SiteCell should match snapshot for cell type r 1`] = `ShallowWrapper {}`;
+exports[`SiteCell should match snapshot for cell type r 1`] = `
+<div
+  className="siteCell"
+>
+  ⛰️
+</div>
+`;
 
-exports[`SiteCell should match snapshot for cell type t 1`] = `ShallowWrapper {}`;
+exports[`SiteCell should match snapshot for cell type t 1`] = `
+<div
+  className="siteCell"
+>
+  🌳
+</div>
+`;

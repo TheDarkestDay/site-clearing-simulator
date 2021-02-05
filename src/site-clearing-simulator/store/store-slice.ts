@@ -31,7 +31,7 @@ export type SiteClearingSimulatorState = {
   eventsLog: EventsLogEntry[];
 };
 
-const initialState: SiteClearingSimulatorState = {
+export const initialState: SiteClearingSimulatorState = {
   map: [],
   isStarted: false,
   isStopped: false,

@@ -1,4 +1,5 @@
 import { Card } from '@material-ui/core';
+import { Alert, AlertTitle } from '@material-ui/lab';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { getRange } from '../../utils';
@@ -16,6 +17,16 @@ export const SiteMap = ({ className }: Props) => {
   const showBulldozerOnStartingPosition = useSelector(isBulldozerOnStartingPosition);
 
   const rowsCount = siteRows.length;
+  if (rowsCount === 0) {
+    return (
+      <Alert severity="error">
+        <AlertTitle>Error</AlertTitle>
+
+        Uploaded map appears to be invalid - please restart the simulation using the "Refresh" button below
+      </Alert>
+    );
+  }
+
   const columnsCount = siteRows[0].length;
 
   return (

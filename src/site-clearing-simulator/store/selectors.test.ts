@@ -1,4 +1,4 @@
-import { getFuelCost, getUnclearedCellsCost, isBulldozerOnStartingPosition } from './selectors';
+import { getFuelCost, getTotalExpenses, getUnclearedCellsCost, isBulldozerOnStartingPosition } from './selectors';
 import { getTestState } from '../test-helpers';
 
 describe('Site clearing simulator selectors', () => {
@@ -47,6 +47,35 @@ describe('Site clearing simulator selectors', () => {
       });
 
       expect(isBulldozerOnStartingPosition({ siteClearingSimulator: testState })).toEqual(false);
+    });
+  });
+
+  describe('getTotalExpenses', () => {
+    it('should correctly correctly calculate total expenses for fuel and uncleared cells', () => {
+      const testState = getTestState({
+        fuelUsed: 3,
+        map: [
+          ['C', 'C', 'B'],
+          ['o', 'o', 'o'],
+          ['o', 'o', 'o']
+        ]
+      });
+
+      expect(getTotalExpenses({ siteClearingSimulator: testState })).toEqual(21);
+    });
+
+    it('should correctly apply extra charge for attempt to remove preservable tree', () => {
+      const testState = getTestState({
+        fuelUsed: 3,
+        map: [
+          ['C', 'C', 'B'],
+          ['o', 'o', 'o'],
+          ['o', 'o', 'o']
+        ],
+        isPreservedTreeRemoved: true,
+      });
+
+      expect(getTotalExpenses({ siteClearingSimulator: testState })).toEqual(321);
     });
   });
 });

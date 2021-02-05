@@ -1,5 +1,5 @@
-import { shallow } from 'enzyme';
 import React from 'react';
+import { create } from 'react-test-renderer';
 import { SiteCellType } from '../store/store-slice';
 import { SiteCell } from './SiteCell';
 
@@ -13,7 +13,7 @@ const cellTypes: SiteCellType[] = [
 describe('SiteCell', () => {
   cellTypes.forEach((cellType) => {
     it(`should match snapshot for cell type ${cellType}`, () => {
-      const wrapper = shallow(<SiteCell type={cellType}/>);
+      const wrapper = create(<SiteCell type={cellType}/>);
 
       expect(wrapper).toMatchSnapshot();
     });
