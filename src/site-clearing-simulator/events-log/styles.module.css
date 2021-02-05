@@ -1,3 +1,8 @@
 .logTitle {
   padding: 8px;
 }
+
+.logList {
+  height: 350px;
+  overflow-y: auto;
+}

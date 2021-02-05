@@ -1,6 +1,6 @@
 import React from 'react';
 import { Bulldozer } from '../bulldozer/Bulldozer';
-import { SiteCellType } from '../store-slice';
+import { SiteCellType } from '../store/store-slice';
 import styles from './styles.module.css';
 
 type Props = {

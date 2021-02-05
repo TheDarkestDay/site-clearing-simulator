@@ -1,11 +1,11 @@
 import { createSelector } from '@reduxjs/toolkit';
-import { GlobalState } from '../store';
+import { GlobalState } from '../../store';
 
 export const getSiteMap = (state: GlobalState) => state.siteClearingSimulator.map;
 
 export const isSimulationStarted = (state: GlobalState) => state.siteClearingSimulator.isStarted;
 
-export const isSimulationStopped = (state: GlobalState) => state.siteClearingSimulator.stopReason !== '';
+export const isSimulationStopped = (state: GlobalState) => state.siteClearingSimulator.isStopped;
 
 export const isBulldozerOnStartingPosition = (state: GlobalState) => {
   const {siteClearingSimulator: { bulldozerPosition: {x, y} }} = state;

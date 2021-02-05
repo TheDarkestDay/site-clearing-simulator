@@ -1,4 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { EventsLogEntry } from './events-log-entry';
+import { LogEntryType } from './log-entry-type';
 
 export type SiteCellType = "o" | "t" | "r" | "T" | "B" | "C";
 
@@ -17,26 +19,21 @@ export enum BulldozerDirection {
   Left = 4,
 }
 
-export type EventLogEntry = {
-  type: string;
-  description: string;
-};
-
 export type SiteClearingSimulatorState = {
   map: SiteCellType[][];
   isStarted: boolean;
-  stopReason: string;
+  isStopped: boolean;
   isPreservedTreeRemoved: boolean;
   bulldozerPosition: Point2D;
   bulldozerDirection: BulldozerDirection;
   fuelUsed: number;
-  eventsLog: EventLogEntry[];
+  eventsLog: EventsLogEntry[];
 };
 
 const initialState: SiteClearingSimulatorState = {
   map: [],
   isStarted: false,
-  stopReason: '',
+  isStopped: false,
   bulldozerDirection: BulldozerDirection.Right,
   bulldozerPosition: {
     x: 0,
@@ -105,14 +102,23 @@ const siteClearingSimulatorSlice = createSlice({
       }
     },
     stopSimulation(state) {
-      state.stopReason = 'Simulation was stopped by the user';
+      state.isStopped = true;
+
+      state.eventsLog.push({
+        type: LogEntryType.Stop,
+        description: 'Simulation was stopped by the user'
+      });
     },
     moveForward(state) {
       const {bulldozerPosition, bulldozerDirection} = state;
       const nextPoint = getNextPoint(bulldozerPosition, bulldozerDirection);
 
       if (isPointOutOfBounds(nextPoint, state.map)) {
-        state.stopReason = 'Bulldozer was moved out of site bounds';
+        state.isStopped = true;
+        state.eventsLog.push({
+          type: LogEntryType.Stop,
+          description: 'Simulation stopped: bulldozer left the site boundaries'
+        });
 
         return state;
       }
@@ -121,7 +127,12 @@ const siteClearingSimulatorSlice = createSlice({
       const cellToClear = state.map[nextX][nextY];
       if (cellToClear === 'T') {
         state.isPreservedTreeRemoved = true;
-        state.stopReason = 'An attempt to remove preservable tree was performed.';
+        state.isStopped = true;
+
+        state.eventsLog.push({
+          type: LogEntryType.Stop,
+          description: 'Simulation stopped: an attempt to remove preservable tree was performed'
+        });
 
         return state;
       }
@@ -135,19 +146,39 @@ const siteClearingSimulatorSlice = createSlice({
       state.bulldozerPosition.x = nextX;
       state.bulldozerPosition.y = nextY; 
 
+      state.eventsLog.push({
+        type: LogEntryType.MoveTo,
+        description: `Move to ${nextX}-${nextY}`
+      });
+
       const isThereAnyLandToClear = state.map
         .reduce((total, row) => total.concat(row), [])
         .some((cell) => cell === 'o' || cell === 'r' || cell === 't');
 
       if (!isThereAnyLandToClear) {
-        state.stopReason = 'Simulation stopped. Site map is fully cleared';
+        state.isStopped = true;
+
+        state.eventsLog.push({
+          type: LogEntryType.Stop,
+          description: 'Simulation stopped: there are no more fields to clear'
+        });
       }
     },
     rotateLeft(state) {
       state.bulldozerDirection -= 1;
+
+      state.eventsLog.push({
+        type: LogEntryType.RotateLeft,
+        description: 'Rotate left',
+      });
     },
     rotateRight(state) {
       state.bulldozerDirection += 1;
+
+      state.eventsLog.push({
+        type: LogEntryType.RotateRight,
+        description: 'Rotate right',
+      });
     },
   },
 });

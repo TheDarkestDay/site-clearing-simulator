@@ -1,7 +1,7 @@
 import { Card, Typography, CardContent } from '@material-ui/core'
 import React, { useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { startSimulation } from '../store-slice';
+import { startSimulation } from '../store/store-slice';
 import styles from './styles.module.css';
 
 export const SimulationFileInput = () => {

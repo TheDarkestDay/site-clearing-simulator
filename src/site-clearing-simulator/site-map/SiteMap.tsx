@@ -3,7 +3,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { getRange } from '../../utils';
 import { Bulldozer } from '../bulldozer/Bulldozer';
-import { getSiteMap, isBulldozerOnStartingPosition } from '../selectors';
+import { getSiteMap, isBulldozerOnStartingPosition } from '../store/selectors';
 import { SiteCell } from '../site-cell/SiteCell';
 import styles from './styles.module.css';
 

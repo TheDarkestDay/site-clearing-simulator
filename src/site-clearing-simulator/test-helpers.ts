@@ -1,4 +1,4 @@
-import { SiteClearingSimulatorState, BulldozerDirection } from './store-slice';
+import { SiteClearingSimulatorState, BulldozerDirection } from './store/store-slice';
 
 export const getTestState = (
   overrides: Partial<SiteClearingSimulatorState> = {}
@@ -6,8 +6,8 @@ export const getTestState = (
   return {
     map: [],
     isStarted: false,
+    isStopped: false,
     bulldozerDirection: BulldozerDirection.Right,
-    stopReason: "",
     bulldozerPosition: {
       x: 0,
       y: -1,

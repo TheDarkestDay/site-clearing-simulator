@@ -1,5 +1,5 @@
 import { getFuelCost, getUnclearedCellsCost, isBulldozerOnStartingPosition } from './selectors';
-import { getTestState } from './test-helpers';
+import { getTestState } from '../test-helpers';
 
 describe('Site clearing simulator selectors', () => {
   describe('getFuelCost', () => {

@@ -1,4 +1,4 @@
-import { siteClearingSimulatorReducer } from ".";
+import { siteClearingSimulatorReducer } from "..";
 import {
   BulldozerDirection,
   moveForward,
@@ -8,7 +8,8 @@ import {
   startSimulation,
   stopSimulation,
 } from "./store-slice";
-import { getTestState } from './test-helpers';
+import { getTestState } from '../test-helpers';
+import { LogEntryType } from './log-entry-type';
 
 describe("Site clearing simulator store slice", () => {
   describe("reducer", () => {
@@ -238,16 +239,151 @@ describe("Site clearing simulator store slice", () => {
       });
     });
 
+    describe('logging', () => {
+      it('should properly log rotation to the left', () => {
+        const { eventsLog } = siteClearingSimulatorReducer(
+          getTestState(),
+          rotateLeft()
+        );
+
+        const [trackedEvent] = eventsLog;
+
+        expect(trackedEvent).toEqual({
+          type: LogEntryType.RotateLeft,
+          description: 'Rotate left',
+        });
+      });
+
+      it('should properly log rotation to the right', () => {
+        const { eventsLog } = siteClearingSimulatorReducer(
+          getTestState(),
+          rotateRight()
+        );
+
+        const [trackedEvent] = eventsLog;
+
+        expect(trackedEvent).toEqual({
+          type: LogEntryType.RotateRight,
+          description: 'Rotate right',
+        });
+      });
+
+      it('should properly log move forward', () => {
+        const testState = getTestState({
+          map: siteMapInProgress,
+          bulldozerPosition: {
+            x: 1,
+            y: 1,
+          }
+        });
+
+        const { eventsLog } = siteClearingSimulatorReducer(
+          testState,
+          moveForward()
+        );
+        
+        const [trackedEvent] = eventsLog;
+
+        expect(trackedEvent).toEqual({
+          type: LogEntryType.MoveTo,
+          description: 'Move to 1-2',
+        });
+      });
+
+      it('should properly log simulation halt by a user', () => {
+        const { eventsLog } = siteClearingSimulatorReducer(
+          getTestState({ isStarted: true }),
+          stopSimulation()
+        );
+        const [trackedEvent] = eventsLog;
+
+        expect(trackedEvent).toEqual({
+          type: LogEntryType.Stop,
+          description: 'Simulation was stopped by the user',
+        });
+      });
+
+      it('should properly log stop message for fully cleared field', () => {
+        const siteMap: SiteCellType[][] = [
+          ["B", "o"],
+          ["C", "C"],
+        ];
+        const state = {
+          isStarted: true,
+          map: siteMap,
+          bulldozerPosition: { x: 0, y: 0 },
+        };
+
+        const { eventsLog } = siteClearingSimulatorReducer(
+          getTestState(state),
+          moveForward()
+        );
+        const [ , stopEventEntry] = eventsLog;
+
+        expect(stopEventEntry).toEqual({
+          type: LogEntryType.Stop,
+          description: 'Simulation stopped: there are no more fields to clear',
+        });
+      });
+
+      it('should properly log stop message for moving out of bounds', () => {
+        const siteMap: SiteCellType[][] = [
+          ["o", "B", "T"],
+          ["r", "C", "r"],
+          ["t", "t", "t"],
+        ];
+        const state = {
+          isStarted: true,
+          map: siteMap,
+          bulldozerPosition: { x: 0, y: 1 },
+          bulldozerDirection: BulldozerDirection.Up,
+        };
+        const { eventsLog } = siteClearingSimulatorReducer(
+          getTestState(state),
+          moveForward()
+        );
+
+        const [trackedEvent] = eventsLog;
+
+        expect(trackedEvent).toEqual({
+          type: LogEntryType.Stop,
+          description: 'Simulation stopped: bulldozer left the site boundaries',
+        });
+      });
+
+      it('should properly log stop message for removing preservable tree', () => {
+        const siteMap: SiteCellType[][] = [
+          ["o", "B", "T"],
+          ["r", "C", "r"],
+          ["t", "t", "t"],
+        ];
+        const state = {
+          isStarted: true,
+          map: siteMap,
+          bulldozerPosition: { x: 0, y: 1 },
+        };
+        const { eventsLog } = siteClearingSimulatorReducer(
+          getTestState(state),
+          moveForward()
+        );
+
+        const [trackedEvent] = eventsLog;
+
+        expect(trackedEvent).toEqual({
+          type: LogEntryType.Stop,
+          description: 'Simulation stopped: an attempt to remove preservable tree was performed',
+        });
+      });
+    });
+
     describe("stopping simulation", () => {
       it("should allow to stop simulation", () => {
-        const { stopReason } = siteClearingSimulatorReducer(
+        const { isStopped } = siteClearingSimulatorReducer(
           getTestState({ isStarted: true }),
           stopSimulation()
         );
 
-        expect(stopReason).toMatchInlineSnapshot(
-          `"Simulation was stopped by the user"`
-        );
+        expect(isStopped).toEqual(true);
       });
 
       it("should stop simulation immediately when attempt to remove preservable tree is performed", () => {
@@ -261,14 +397,12 @@ describe("Site clearing simulator store slice", () => {
           map: siteMap,
           bulldozerPosition: { x: 0, y: 1 },
         };
-        const { stopReason } = siteClearingSimulatorReducer(
+        const { isStopped } = siteClearingSimulatorReducer(
           getTestState(state),
           moveForward()
         );
 
-        expect(stopReason).toMatchInlineSnapshot(
-          `"An attempt to remove preservable tree was performed."`
-        );
+        expect(isStopped).toEqual(true);
       });
 
       it("should stop the simulation if bulldozer goes out of map bounds", () => {
@@ -283,14 +417,12 @@ describe("Site clearing simulator store slice", () => {
           bulldozerPosition: { x: 0, y: 1 },
           bulldozerDirection: BulldozerDirection.Up,
         };
-        const { stopReason } = siteClearingSimulatorReducer(
+        const { isStopped } = siteClearingSimulatorReducer(
           getTestState(state),
           moveForward()
         );
 
-        expect(stopReason).toMatchInlineSnapshot(
-          `"Bulldozer was moved out of site bounds"`
-        );
+        expect(isStopped).toEqual(true);;
       });
 
       it("should stop automatically when there are no more fields to clear", () => {
@@ -303,12 +435,12 @@ describe("Site clearing simulator store slice", () => {
           map: siteMap,
           bulldozerPosition: { x: 0, y: 0 },
         };
-        const { stopReason } = siteClearingSimulatorReducer(
+        const { isStopped } = siteClearingSimulatorReducer(
           getTestState(state),
           moveForward()
         );
 
-        expect(stopReason).toEqual(true);
+        expect(isStopped).toEqual(true);
       });
     });
   });

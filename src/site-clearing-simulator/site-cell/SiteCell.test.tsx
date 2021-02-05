@@ -1,6 +1,6 @@
 import { shallow } from 'enzyme';
 import React from 'react';
-import { SiteCellType } from '../store-slice';
+import { SiteCellType } from '../store/store-slice';
 import { SiteCell } from './SiteCell';
 
 const cellTypes: SiteCellType[] = [

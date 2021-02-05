@@ -1,7 +1,7 @@
 import { Card, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@material-ui/core';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { getFuelCost, getTotalExpenses, getUnclearedCellsCost } from '../selectors';
+import { getFuelCost, getTotalExpenses, getUnclearedCellsCost } from '../store/selectors';
 import styles from './styles.module.css';
 
 type Props = {

@@ -2,8 +2,8 @@ import { Card, Fab } from '@material-ui/core';
 import { NavigationOutlined, RedoOutlined, StopOutlined, UndoOutlined } from '@material-ui/icons';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { isSimulationStopped } from '../selectors';
-import { moveForward, rotateRight, rotateLeft } from '../store-slice';
+import { isSimulationStopped } from '../store/selectors';
+import { moveForward, rotateRight, rotateLeft } from '../store/store-slice';
 import styles from './styles.module.css';
 
 type Props = {
