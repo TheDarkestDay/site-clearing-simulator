@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { dir } from 'console';
 import { EventsLogEntry } from './events-log-entry';
 import { LogEntryType } from './log-entry-type';
 

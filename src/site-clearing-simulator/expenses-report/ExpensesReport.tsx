@@ -1,17 +1,18 @@
 import { Card, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@material-ui/core';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { getFuelCost, getTotalExpenses, getUnclearedCellsCost } from '../store/selectors';
+import { getFuelCost, getTotalExpenses, getUnclearedCellsCost, isPreservedTreeRemoved, PRESERVED_TREE_REMOVAL_CHARGE } from '../store/selectors';
 import styles from './styles.module.css';
 
 type Props = {
   className: string;
 }
 
-export const ExpensesReport = ({className}: Props) => {
+export const ExpensesReport = ({ className }: Props) => {
   const fuelCost = useSelector(getFuelCost);
   const unclearedCellsCost = useSelector(getUnclearedCellsCost);
   const totalCost = useSelector(getTotalExpenses);
+  const shouldApplyExtraCharge = useSelector(isPreservedTreeRemoved);
 
   return (
     <Card className={className}>
@@ -47,6 +48,17 @@ export const ExpensesReport = ({className}: Props) => {
               {unclearedCellsCost}
             </TableCell>
           </TableRow>
+          {
+            shouldApplyExtraCharge &&
+              <TableRow>
+                <TableCell>
+                  Preservable tree removal fine
+              </TableCell>
+                <TableCell>
+                  {PRESERVED_TREE_REMOVAL_CHARGE}
+                </TableCell>
+              </TableRow>
+          }
           <TableRow>
             <TableCell>
               Total

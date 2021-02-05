@@ -32,7 +32,7 @@ export const getUnclearedCellsCost = (state: GlobalState) => {
   return unclearedCellsCount * UNCLEARED_CELL_COST;
 };
 
-const PRESERVED_TREE_REMOVAL_CHARGE = 300;
+export const PRESERVED_TREE_REMOVAL_CHARGE = 300;
 
 export const getTotalExpenses = createSelector(
   getFuelCost,
