@@ -1,9 +1,9 @@
 import { Card, Fab } from '@material-ui/core';
-import { NavigationOutlined, RedoOutlined, StopOutlined, UndoOutlined } from '@material-ui/icons';
+import { NavigationOutlined, RedoOutlined, SettingsBackupRestore, Stop, UndoOutlined } from '@material-ui/icons';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { isSimulationStopped } from '../store/selectors';
-import { moveForward, rotateRight, rotateLeft } from '../store/store-slice';
+import { moveForward, rotateRight, rotateLeft, stopSimulation, resetSimulation } from '../store/store-slice';
 import styles from './styles.module.css';
 
 type Props = {
@@ -26,6 +26,14 @@ export const ControlPanel = ({ className }: Props) => {
     dispatch(rotateRight());
   };
 
+  const handleStopButtonClick = () => {
+    dispatch(stopSimulation());
+  };
+
+  const handleStartNewSimulationButtonClick = () => {
+    dispatch(resetSimulation());
+  };
+
   return (
     <Card className={`${styles.controlPanel} ${className}`}>
       <div className={styles.controlButton}>
@@ -46,9 +54,15 @@ export const ControlPanel = ({ className }: Props) => {
         </Fab>
       </div>
 
-      <div className={styles.controlButton}>
+      <div className={styles.controlButton} onClick={handleStopButtonClick}>
         <Fab color="secondary" disabled={isDisabled}>
-          <StopOutlined />
+          <Stop />
+        </Fab>
+      </div>
+
+      <div className={styles.controlButton} onClick={handleStartNewSimulationButtonClick}>
+        <Fab color="secondary">
+          <SettingsBackupRestore />
         </Fab>
       </div>
     </Card>

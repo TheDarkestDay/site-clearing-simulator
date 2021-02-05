@@ -2,6 +2,7 @@ import { siteClearingSimulatorReducer } from "..";
 import {
   BulldozerDirection,
   moveForward,
+  resetSimulation,
   rotateLeft,
   rotateRight,
   SiteCellType,
@@ -47,7 +48,7 @@ describe("Site clearing simulator store slice", () => {
       expect(allCells).not.toContain("B");
     });
 
-    it("should allow to restart simulation", () => {
+    it("should allow to reset simulation", () => {
       const originalState = getTestState({
         map: siteMapInProgress,
         fuelUsed: 4,
@@ -57,11 +58,11 @@ describe("Site clearing simulator store slice", () => {
         },
       });
 
-      const expectedState = getTestState({ map: siteMap, isStarted: true });
+      const expectedState = getTestState();
 
       const newState = siteClearingSimulatorReducer(
         originalState,
-        startSimulation(siteMap)
+        resetSimulation()
       );
 
       expect(newState).toEqual(expectedState);

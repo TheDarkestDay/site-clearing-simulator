@@ -101,6 +101,9 @@ const siteClearingSimulatorSlice = createSlice({
         isStarted: true,
       }
     },
+    resetSimulation() {
+      return initialState;
+    },
     stopSimulation(state) {
       state.isStopped = true;
 
@@ -185,6 +188,7 @@ const siteClearingSimulatorSlice = createSlice({
 
 export const {
   startSimulation,
+  resetSimulation,
   stopSimulation,
   moveForward,
   rotateLeft,

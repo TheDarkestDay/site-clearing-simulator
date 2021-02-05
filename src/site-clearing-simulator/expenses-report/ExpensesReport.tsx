@@ -19,7 +19,7 @@ export const ExpensesReport = ({className}: Props) => {
         Expense report
       </Typography>
 
-      <Table>
+      <Table size="small">
         <TableHead>
           <TableRow>
             <TableCell>

@@ -9,7 +9,7 @@ import { store } from './store';
 // TODO: Barrels
 // TODO: Fix tests
 // TODO: Preservable tree fine
-// TODO: File uploading
+// TODO: Bug with moving to the previously cleared cell
 
 ReactDOM.render(
   <React.StrictMode>
