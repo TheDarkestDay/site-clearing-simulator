@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { dir } from 'console';
 import { EventsLogEntry } from './events-log-entry';
 import { LogEntryType } from './log-entry-type';
 
@@ -10,13 +11,13 @@ export type Point2D = {
 }
 
 export enum BulldozerDirection {
-  Up = 1,
+  Up = 'UP',
 
-  Right = 2,
+  Right = 'RIGHT',
 
-  Down = 3,
+  Down = 'DOWN',
 
-  Left = 4,
+  Left = 'LEFT',
 }
 
 export type SiteClearingSimulatorState = {
@@ -68,6 +69,28 @@ const getNextPoint = ({ x, y }: Point2D, direction: BulldozerDirection): Point2D
       }
   }
 };
+
+const getNextDirection = (direction: BulldozerDirection, turnDirection: 'left' | 'right'): BulldozerDirection => {
+  const directions = [
+    BulldozerDirection.Up,
+    BulldozerDirection.Right,
+    BulldozerDirection.Down,
+    BulldozerDirection.Left,
+  ];
+
+  const directionDelta = turnDirection === 'right' ? 1 : -1;
+  const newDirectionIndex = directions.indexOf(direction) + directionDelta;
+
+  if (newDirectionIndex < 0) {
+    return BulldozerDirection.Left;
+  }
+
+  if (newDirectionIndex >= directions.length) {
+    return BulldozerDirection.Up;
+  }
+
+  return directions[newDirectionIndex];
+}
 
 const getCellClearingFuelCost = (cellType: SiteCellType): number => {
   switch (cellType) {
@@ -168,7 +191,7 @@ const siteClearingSimulatorSlice = createSlice({
       }
     },
     rotateLeft(state) {
-      state.bulldozerDirection -= 1;
+      state.bulldozerDirection = getNextDirection(state.bulldozerDirection, 'left');
 
       state.eventsLog.push({
         type: LogEntryType.RotateLeft,
@@ -176,7 +199,7 @@ const siteClearingSimulatorSlice = createSlice({
       });
     },
     rotateRight(state) {
-      state.bulldozerDirection += 1;
+      state.bulldozerDirection = getNextDirection(state.bulldozerDirection, 'right');;
 
       state.eventsLog.push({
         type: LogEntryType.RotateRight,

@@ -1,3 +1,15 @@
 .bulldozer {
   font-size: 24px;
 }
+
+.bulldozerHeadingRight {
+  transform: scaleX(-1);
+}
+
+.bulldozerHeadingDown {
+  transform: scaleX(-1) rotate(-90deg);
+}
+
+.bulldozerHeadingUp {
+  transform: scaleX(-1) rotate(90deg);
+}

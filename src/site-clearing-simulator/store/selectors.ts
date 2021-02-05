@@ -7,6 +7,8 @@ export const isSimulationStarted = (state: GlobalState) => state.siteClearingSim
 
 export const isSimulationStopped = (state: GlobalState) => state.siteClearingSimulator.isStopped;
 
+export const getBulldozerDirection = (state: GlobalState) => state.siteClearingSimulator.bulldozerDirection;
+
 export const isBulldozerOnStartingPosition = (state: GlobalState) => {
   const {siteClearingSimulator: { bulldozerPosition: {x, y} }} = state;
 
