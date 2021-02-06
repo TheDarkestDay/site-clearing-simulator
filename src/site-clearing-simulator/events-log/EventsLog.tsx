@@ -7,7 +7,7 @@ import { getEvents } from '../store/selectors';
 import styles from './styles.module.css';
 
 type Props = {
-  className: string;
+  className?: string;
 }
 
 const getLogEntryIcon = (type: LogEntryType) => {

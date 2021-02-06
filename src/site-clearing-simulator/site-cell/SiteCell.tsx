@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bulldozer } from '../bulldozer/Bulldozer';
+import { Bulldozer } from '../bulldozer';
 import { SiteCellType } from '../store/store-slice';
 import styles from './styles.module.css';
 

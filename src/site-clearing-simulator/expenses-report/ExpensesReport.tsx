@@ -5,7 +5,7 @@ import { getFuelCost, getTotalExpenses, getUnclearedCellsCost, isPreservedTreeRe
 import styles from './styles.module.css';
 
 type Props = {
-  className: string;
+  className?: string;
 }
 
 export const ExpensesReport = ({ className }: Props) => {

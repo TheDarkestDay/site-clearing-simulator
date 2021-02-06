@@ -1,0 +1,212 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ExpensesReport component should match snapshot for expenses with preserved tree charge 1`] = `
+<div
+  className="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
+>
+  <h2
+    className="MuiTypography-root reportTitle MuiTypography-body1"
+  >
+    Expense report
+  </h2>
+  <table
+    className="MuiTable-root"
+    role={null}
+  >
+    <thead
+      className="MuiTableHead-root"
+      role={null}
+    >
+      <tr
+        className="MuiTableRow-root MuiTableRow-head"
+        role={null}
+      >
+        <th
+          aria-sort={null}
+          className="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeSmall"
+          scope="col"
+        >
+          Item name
+        </th>
+        <th
+          aria-sort={null}
+          className="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeSmall"
+          scope="col"
+        >
+          Cost
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      className="MuiTableBody-root"
+      role={null}
+    >
+      <tr
+        className="MuiTableRow-root"
+        role={null}
+      >
+        <td
+          aria-sort={null}
+          className="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall"
+        >
+          Fuel
+        </td>
+        <td
+          aria-sort={null}
+          className="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall"
+        >
+          0
+        </td>
+      </tr>
+      <tr
+        className="MuiTableRow-root"
+        role={null}
+      >
+        <td
+          aria-sort={null}
+          className="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall"
+        >
+          Uncleared cells
+        </td>
+        <td
+          aria-sort={null}
+          className="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall"
+        >
+          0
+        </td>
+      </tr>
+      <tr
+        className="MuiTableRow-root"
+        role={null}
+      >
+        <td
+          aria-sort={null}
+          className="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall"
+        >
+          Preservable tree removal fine
+        </td>
+        <td
+          aria-sort={null}
+          className="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall"
+        >
+          300
+        </td>
+      </tr>
+      <tr
+        className="MuiTableRow-root"
+        role={null}
+      >
+        <td
+          aria-sort={null}
+          className="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall"
+        >
+          Total
+        </td>
+        <td
+          aria-sort={null}
+          className="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall"
+        >
+          300
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`ExpensesReport component should match snapshot for expenses without preserved tree charge 1`] = `
+<div
+  className="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
+>
+  <h2
+    className="MuiTypography-root reportTitle MuiTypography-body1"
+  >
+    Expense report
+  </h2>
+  <table
+    className="MuiTable-root"
+    role={null}
+  >
+    <thead
+      className="MuiTableHead-root"
+      role={null}
+    >
+      <tr
+        className="MuiTableRow-root MuiTableRow-head"
+        role={null}
+      >
+        <th
+          aria-sort={null}
+          className="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeSmall"
+          scope="col"
+        >
+          Item name
+        </th>
+        <th
+          aria-sort={null}
+          className="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeSmall"
+          scope="col"
+        >
+          Cost
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      className="MuiTableBody-root"
+      role={null}
+    >
+      <tr
+        className="MuiTableRow-root"
+        role={null}
+      >
+        <td
+          aria-sort={null}
+          className="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall"
+        >
+          Fuel
+        </td>
+        <td
+          aria-sort={null}
+          className="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall"
+        >
+          0
+        </td>
+      </tr>
+      <tr
+        className="MuiTableRow-root"
+        role={null}
+      >
+        <td
+          aria-sort={null}
+          className="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall"
+        >
+          Uncleared cells
+        </td>
+        <td
+          aria-sort={null}
+          className="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall"
+        >
+          0
+        </td>
+      </tr>
+      <tr
+        className="MuiTableRow-root"
+        role={null}
+      >
+        <td
+          aria-sort={null}
+          className="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall"
+        >
+          Total
+        </td>
+        <td
+          aria-sort={null}
+          className="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall"
+        >
+          0
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;

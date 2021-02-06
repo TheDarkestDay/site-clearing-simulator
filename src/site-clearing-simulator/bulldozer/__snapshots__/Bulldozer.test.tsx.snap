@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Bulldozer should match snapshot for bulldozer direction down 1`] = `
+<div
+  className="bulldozer bulldozerHeadingDown"
+>
+  <span>
+    🚜
+  </span>
+</div>
+`;
+
+exports[`Bulldozer should match snapshot for bulldozer direction left 1`] = `
+<div
+  className="bulldozer "
+>
+  <span>
+    🚜
+  </span>
+</div>
+`;
+
+exports[`Bulldozer should match snapshot for bulldozer direction right 1`] = `
+<div
+  className="bulldozer bulldozerHeadingRight"
+>
+  <span>
+    🚜
+  </span>
+</div>
+`;
+
+exports[`Bulldozer should match snapshot for bulldozer direction up 1`] = `
+<div
+  className="bulldozer bulldozerHeadingUp"
+>
+  <span>
+    🚜
+  </span>
+</div>
+`;

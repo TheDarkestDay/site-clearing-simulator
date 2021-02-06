@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SiteClearingSimulator component should match snapshot 1`] = `
+Array [
+  <header
+    className="MuiPaper-root MuiAppBar-root MuiAppBar-positionStatic MuiAppBar-colorPrimary MuiPaper-elevation4"
+  >
+    <div
+      className="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
+    >
+      <h1
+        className="MuiTypography-root MuiTypography-h6"
+      >
+        Site Clearing Simulator
+      </h1>
+    </div>
+  </header>,
+  <main
+    className="simulatorWrapper"
+  >
+    <div
+      className="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
+    >
+      <div
+        className="MuiCardContent-root"
+      >
+        <form>
+          <label
+            className="MuiTypography-root fileFieldLabel MuiTypography-body1 MuiTypography-gutterBottom"
+            htmlFor="simulationFile"
+          >
+            Please, provide a file to start simulation:
+          </label>
+          <input
+            accept="text/plain"
+            id="simulationFile"
+            onChange={[Function]}
+            type="file"
+          />
+        </form>
+      </div>
+    </div>
+  </main>,
+]
+`;

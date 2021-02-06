@@ -11,6 +11,8 @@ const getBulldozerDirectionClass = (direction: BulldozerDirection) => {
       return styles.bulldozerHeadingRight;
     case BulldozerDirection.Up:
       return styles.bulldozerHeadingUp;
+    default:
+      return '';
   }
 };
 

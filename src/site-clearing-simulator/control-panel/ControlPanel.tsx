@@ -2,17 +2,18 @@ import { Card, Fab } from '@material-ui/core';
 import { NavigationOutlined, RedoOutlined, SettingsBackupRestore, Stop, UndoOutlined } from '@material-ui/icons';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { isSimulationStopped } from '../store/selectors';
+import { isBulldozerOnStartingPosition, isSimulationStopped } from '../store/selectors';
 import { moveForward, rotateRight, rotateLeft, stopSimulation, resetSimulation } from '../store/store-slice';
 import styles from './styles.module.css';
 
 type Props = {
-  className: string;
+  className?: string;
 }
 
 export const ControlPanel = ({ className }: Props) => {
   const dispatch = useDispatch();
   const isDisabled = useSelector(isSimulationStopped);
+  const isRotationAllowed = useSelector(isBulldozerOnStartingPosition);
 
   const handleMoveForwardClick = () => {
     dispatch(moveForward());
@@ -37,7 +38,7 @@ export const ControlPanel = ({ className }: Props) => {
   return (
     <Card className={`${styles.controlPanel} ${className}`}>
       <div className={styles.controlButton}>
-        <Fab color="primary" onClick={handleRotateLeftClick} disabled={isDisabled}>
+        <Fab color="primary" onClick={handleRotateLeftClick} disabled={isRotationAllowed || isDisabled}>
           <UndoOutlined />
         </Fab>
       </div>
@@ -49,7 +50,7 @@ export const ControlPanel = ({ className }: Props) => {
       </div>
 
       <div className={styles.controlButton}>
-        <Fab color="primary" onClick={handleRotateRightClick} disabled={isDisabled}>
+        <Fab color="primary" onClick={handleRotateRightClick} disabled={isRotationAllowed || isDisabled}>
           <RedoOutlined />
         </Fab>
       </div>

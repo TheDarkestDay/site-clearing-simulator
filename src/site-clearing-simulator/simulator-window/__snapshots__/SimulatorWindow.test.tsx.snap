@@ -1,0 +1,332 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SimulatorWindow component should match snapshot 1`] = `
+<section
+  className="simulatorWindowGrid"
+>
+  <div
+    className="MuiPaper-root MuiAlert-root MuiAlert-standardError MuiPaper-elevation0"
+    role="alert"
+  >
+    <div
+      className="MuiAlert-icon"
+    >
+      <svg
+        aria-hidden={true}
+        className="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit"
+        focusable="false"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+        />
+      </svg>
+    </div>
+    <div
+      className="MuiAlert-message"
+    >
+      <div
+        className="MuiTypography-root MuiAlertTitle-root MuiTypography-body1 MuiTypography-gutterBottom"
+      >
+        Error
+      </div>
+      Uploaded map appears to be invalid - please restart the simulation using the "Refresh" button below
+    </div>
+  </div>
+  <div
+    className="MuiPaper-root MuiCard-root expensesReport MuiPaper-elevation1 MuiPaper-rounded"
+  >
+    <h2
+      className="MuiTypography-root reportTitle MuiTypography-body1"
+    >
+      Expense report
+    </h2>
+    <table
+      className="MuiTable-root"
+      role={null}
+    >
+      <thead
+        className="MuiTableHead-root"
+        role={null}
+      >
+        <tr
+          className="MuiTableRow-root MuiTableRow-head"
+          role={null}
+        >
+          <th
+            aria-sort={null}
+            className="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeSmall"
+            scope="col"
+          >
+            Item name
+          </th>
+          <th
+            aria-sort={null}
+            className="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeSmall"
+            scope="col"
+          >
+            Cost
+          </th>
+        </tr>
+      </thead>
+      <tbody
+        className="MuiTableBody-root"
+        role={null}
+      >
+        <tr
+          className="MuiTableRow-root"
+          role={null}
+        >
+          <td
+            aria-sort={null}
+            className="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall"
+          >
+            Fuel
+          </td>
+          <td
+            aria-sort={null}
+            className="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall"
+          >
+            0
+          </td>
+        </tr>
+        <tr
+          className="MuiTableRow-root"
+          role={null}
+        >
+          <td
+            aria-sort={null}
+            className="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall"
+          >
+            Uncleared cells
+          </td>
+          <td
+            aria-sort={null}
+            className="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall"
+          >
+            0
+          </td>
+        </tr>
+        <tr
+          className="MuiTableRow-root"
+          role={null}
+        >
+          <td
+            aria-sort={null}
+            className="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall"
+          >
+            Total
+          </td>
+          <td
+            aria-sort={null}
+            className="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall"
+          >
+            0
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div
+    className="MuiPaper-root MuiCard-root eventsLog MuiPaper-elevation1 MuiPaper-rounded"
+  >
+    <h2
+      className="MuiTypography-root logTitle MuiTypography-body1"
+    >
+      Log
+    </h2>
+    <ul
+      className="MuiList-root logList MuiList-dense MuiList-padding"
+    />
+  </div>
+  <div
+    className="MuiPaper-root MuiCard-root controlPanel controlPanel MuiPaper-elevation1 MuiPaper-rounded"
+  >
+    <div
+      className="controlButton"
+    >
+      <button
+        className="MuiButtonBase-root MuiFab-root Mui-disabled MuiFab-primary Mui-disabled"
+        disabled={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onDragLeave={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex={-1}
+        type="button"
+      >
+        <span
+          className="MuiFab-label"
+        >
+          <svg
+            aria-hidden={true}
+            className="MuiSvgIcon-root"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M12.5 8c-2.65 0-5.05.99-6.9 2.6L2 7v9h9l-3.62-3.62c1.39-1.16 3.16-1.88 5.12-1.88 3.54 0 6.55 2.31 7.6 5.5l2.37-.78C21.08 11.03 17.15 8 12.5 8z"
+            />
+          </svg>
+        </span>
+      </button>
+    </div>
+    <div
+      className="controlButton"
+    >
+      <button
+        className="MuiButtonBase-root MuiFab-root MuiFab-primary"
+        disabled={false}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onDragLeave={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex={0}
+        type="button"
+      >
+        <span
+          className="MuiFab-label"
+        >
+          <svg
+            aria-hidden={true}
+            className="MuiSvgIcon-root"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M12 7.27l4.28 10.43-3.47-1.53-.81-.36-.81.36-3.47 1.53L12 7.27M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"
+            />
+          </svg>
+        </span>
+      </button>
+    </div>
+    <div
+      className="controlButton"
+    >
+      <button
+        className="MuiButtonBase-root MuiFab-root Mui-disabled MuiFab-primary Mui-disabled"
+        disabled={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onDragLeave={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex={-1}
+        type="button"
+      >
+        <span
+          className="MuiFab-label"
+        >
+          <svg
+            aria-hidden={true}
+            className="MuiSvgIcon-root"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M18.4 10.6C16.55 8.99 14.15 8 11.5 8c-4.65 0-8.58 3.03-9.96 7.22L3.9 16c1.05-3.19 4.05-5.5 7.6-5.5 1.95 0 3.73.72 5.12 1.88L13 16h9V7l-3.6 3.6z"
+            />
+          </svg>
+        </span>
+      </button>
+    </div>
+    <div
+      className="controlButton"
+      onClick={[Function]}
+    >
+      <button
+        className="MuiButtonBase-root MuiFab-root MuiFab-secondary"
+        disabled={false}
+        onBlur={[Function]}
+        onDragLeave={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex={0}
+        type="button"
+      >
+        <span
+          className="MuiFab-label"
+        >
+          <svg
+            aria-hidden={true}
+            className="MuiSvgIcon-root"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M6 6h12v12H6z"
+            />
+          </svg>
+        </span>
+      </button>
+    </div>
+    <div
+      className="controlButton"
+      onClick={[Function]}
+    >
+      <button
+        className="MuiButtonBase-root MuiFab-root MuiFab-secondary"
+        disabled={false}
+        onBlur={[Function]}
+        onDragLeave={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex={0}
+        type="button"
+      >
+        <span
+          className="MuiFab-label"
+        >
+          <svg
+            aria-hidden={true}
+            className="MuiSvgIcon-root"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M14 12c0-1.1-.9-2-2-2s-2 .9-2 2 .9 2 2 2 2-.9 2-2zm-2-9c-4.97 0-9 4.03-9 9H0l4 4 4-4H5c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.51 0-2.91-.49-4.06-1.3l-1.42 1.44C8.04 20.3 9.94 21 12 21c4.97 0 9-4.03 9-9s-4.03-9-9-9z"
+            />
+          </svg>
+        </span>
+      </button>
+    </div>
+  </div>
+</section>
+`;

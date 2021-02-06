@@ -37,125 +37,129 @@ exports[`SiteMap should match snapshot for valid map 1`] = `
   className="MuiPaper-root MuiCard-root siteMap MuiPaper-elevation1 MuiPaper-rounded"
 >
   <div
-    className="siteMapWrapper"
+    className="MuiCardContent-root siteMapWindow"
   >
     <div
-      className="bulldozerStartingPosition"
+      className="siteMapWrapper"
     >
       <div
-        className="bulldozer bulldozerHeadingRight"
-      >
-        <span>
-          🚜
-        </span>
-      </div>
-    </div>
-    <div
-      className="siteMapOuter"
-    >
-      <div
-        className="siteMapYGuide"
+        className="bulldozerStartingPosition"
       >
         <div
-          aria-hidden="true"
-          className="siteMapDummyGuideCell"
-        />
-        <div
-          className="siteMapYGuideCell"
+          className="bulldozer bulldozerHeadingRight"
         >
-          0
-        </div>
-        <div
-          className="siteMapYGuideCell"
-        >
-          1
-        </div>
-        <div
-          className="siteMapYGuideCell"
-        >
-          2
+          <span>
+            🚜
+          </span>
         </div>
       </div>
       <div
-        className="siteMapInner"
+        className="siteMapOuter"
       >
         <div
-          className="siteMapXGuide"
+          className="siteMapYGuide"
         >
           <div
-            className="siteMapXGuideCell"
+            aria-hidden="true"
+            className="siteMapDummyGuideCell"
+          />
+          <div
+            className="siteMapYGuideCell"
           >
             0
           </div>
           <div
-            className="siteMapXGuideCell"
+            className="siteMapYGuideCell"
           >
             1
           </div>
           <div
-            className="siteMapXGuideCell"
+            className="siteMapYGuideCell"
           >
             2
           </div>
         </div>
         <div
-          className="siteMapMainGrid"
+          className="siteMapInner"
         >
           <div
-            className="siteRow"
+            className="siteMapXGuide"
           >
             <div
-              className="siteCell"
+              className="siteMapXGuideCell"
             >
-              
+              0
             </div>
             <div
-              className="siteCell"
+              className="siteMapXGuideCell"
             >
-              
+              1
             </div>
             <div
-              className="siteCell"
+              className="siteMapXGuideCell"
             >
-              
+              2
             </div>
           </div>
           <div
-            className="siteRow"
+            className="siteMapMainGrid"
           >
             <div
-              className="siteCell"
+              className="siteRow"
             >
-              🌳
+              <div
+                className="siteCell"
+              >
+                
+              </div>
+              <div
+                className="siteCell"
+              >
+                
+              </div>
+              <div
+                className="siteCell"
+              >
+                
+              </div>
             </div>
             <div
-              className="siteCell"
+              className="siteRow"
             >
-              ⛰️
+              <div
+                className="siteCell"
+              >
+                🌳
+              </div>
+              <div
+                className="siteCell"
+              >
+                ⛰️
+              </div>
+              <div
+                className="siteCell"
+              >
+                
+              </div>
             </div>
             <div
-              className="siteCell"
+              className="siteRow"
             >
-              
-            </div>
-          </div>
-          <div
-            className="siteRow"
-          >
-            <div
-              className="siteCell"
-            >
-              🌳
-            </div>
-            <div
-              className="siteCell"
-            >
-              ⛰️
-            </div>
-            <div
-              className="siteCell"
-            >
-              🎄
+              <div
+                className="siteCell"
+              >
+                🌳
+              </div>
+              <div
+                className="siteCell"
+              >
+                ⛰️
+              </div>
+              <div
+                className="siteCell"
+              >
+                🎄
+              </div>
             </div>
           </div>
         </div>

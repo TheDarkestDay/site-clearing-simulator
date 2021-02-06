@@ -1,5 +1,5 @@
 import React from 'react';
-import { SiteClearingSimulator } from '../site-clearing-simulator/site-clearing-simulator/SiteClearingSimulator';
+import { SiteClearingSimulator } from '../site-clearing-simulator/site-clearing-simulator';
 import styles from './styles.module.css';
 
 function App() {

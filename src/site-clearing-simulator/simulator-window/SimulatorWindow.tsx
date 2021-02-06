@@ -1,8 +1,8 @@
-import { SiteMap } from '../site-map/SiteMap';
-import { ControlPanel } from '../control-panel/ControlPanel';
+import { SiteMap } from '../site-map';
+import { ControlPanel } from '../control-panel';
 import React from 'react';
-import { ExpensesReport } from '../expenses-report/ExpensesReport';
-import { EventsLog } from '../events-log/EventsLog';
+import { ExpensesReport } from '../expenses-report';
+import { EventsLog } from '../events-log';
 import styles from './styles.module.css';
 
 export const SimulatorWindow = () => {

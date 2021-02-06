@@ -3,9 +3,9 @@ import { Alert, AlertTitle } from '@material-ui/lab';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { getRange } from '../../utils';
-import { Bulldozer } from '../bulldozer/Bulldozer';
+import { Bulldozer } from '../bulldozer';
 import { getSiteMap, isBulldozerOnStartingPosition } from '../store/selectors';
-import { SiteCell } from '../site-cell/SiteCell';
+import { SiteCell } from '../site-cell';
 import styles from './styles.module.css';
 
 type Props = {

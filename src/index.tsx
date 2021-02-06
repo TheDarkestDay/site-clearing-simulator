@@ -6,7 +6,6 @@ import App from './app/App';
 import reportWebVitals from './reportWebVitals';
 import { store } from './store';
 
-// TODO: Errored cell highlight
 // TODO: Barrels
 // TODO: Cover remaining places with tests
 
