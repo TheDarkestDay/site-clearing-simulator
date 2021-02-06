@@ -1,13 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { EventsLogEntry } from './events-log-entry';
+import { getCellClearingFuelCost } from './get-cell-clearing-fuel-cost';
+import { getNextDirection } from './get-next-direction';
+import { getNextPoint } from './get-next-point';
+import { getUnclearedCells } from './get-uncleared-cells';
+import { isPointOutOfBounds } from './is-point-out-of-bounds';
 import { LogEntryType } from './log-entry-type';
+import { Point2D } from './point-2d';
 
 export type SiteCellType = "o" | "t" | "r" | "T" | "B" | "C";
-
-export type Point2D = {
-  x: number;
-  y: number;
-}
 
 export enum BulldozerDirection {
   Up = 'UP',
@@ -42,74 +43,6 @@ export const initialState: SiteClearingSimulatorState = {
   isPreservedTreeRemoved: false,
   fuelUsed: 0,
   eventsLog: [],
-};
-
-const getNextPoint = ({ x, y }: Point2D, direction: BulldozerDirection): Point2D => {
-  switch (direction) {
-    case BulldozerDirection.Up:
-      return {
-        x: x - 1,
-        y,
-      }
-    case BulldozerDirection.Right:
-      return {
-        x,
-        y: y + 1,
-      }
-    case BulldozerDirection.Down:
-      return {
-        x: x + 1,
-        y
-      }
-    case BulldozerDirection.Left:
-      return {
-        x,
-        y: y - 1
-      }
-  }
-};
-
-const getNextDirection = (direction: BulldozerDirection, turnDirection: 'left' | 'right'): BulldozerDirection => {
-  const directions = [
-    BulldozerDirection.Up,
-    BulldozerDirection.Right,
-    BulldozerDirection.Down,
-    BulldozerDirection.Left,
-  ];
-
-  const directionDelta = turnDirection === 'right' ? 1 : -1;
-  const newDirectionIndex = directions.indexOf(direction) + directionDelta;
-
-  if (newDirectionIndex < 0) {
-    return BulldozerDirection.Left;
-  }
-
-  if (newDirectionIndex >= directions.length) {
-    return BulldozerDirection.Up;
-  }
-
-  return directions[newDirectionIndex];
-}
-
-const getCellClearingFuelCost = (cellType: SiteCellType): number => {
-  switch (cellType) {
-    case 'o':
-    case 'C':
-      return 1;
-    case 'r':
-    case 't':
-      return 2;
-    default:
-      throw new Error('Clearing of a cell with bulldozer or preservable tree is not allowed');
-  }
-};
-
-const isPointOutOfBounds = ({x, y}: Point2D, map: SiteCellType[][]): boolean => {
-  const [firstRow] = map;
-  const maxX = map.length;
-  const maxY = firstRow.length;
-
-  return x < 0 || x >= maxX || y < 0 || y >= maxY; 
 };
 
 const siteClearingSimulatorSlice = createSlice({
@@ -176,9 +109,7 @@ const siteClearingSimulatorSlice = createSlice({
         description: `Move to ${nextX}-${nextY}`
       });
 
-      const isThereAnyLandToClear = state.map
-        .reduce((total, row) => total.concat(row), [])
-        .some((cell) => cell === 'o' || cell === 'r' || cell === 't');
+      const isThereAnyLandToClear = getUnclearedCells(state.map).length > 0;
 
       if (!isThereAnyLandToClear) {
         state.isStopped = true;

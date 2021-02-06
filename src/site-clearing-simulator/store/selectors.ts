@@ -1,5 +1,6 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { GlobalState } from '../../store';
+import { getUnclearedCells } from './get-uncleared-cells';
 
 export const getSiteMap = (state: GlobalState) => state.siteClearingSimulator.map;
 
@@ -24,10 +25,7 @@ export const getFuelCost = (state: GlobalState) => state.siteClearingSimulator.f
 const UNCLEARED_CELL_COST = 3;
 
 export const getUnclearedCellsCost = (state: GlobalState) => {
-  const unclearedCellsCount = state.siteClearingSimulator.map
-    .reduce((total, row) => total.concat(row), [])
-    .filter((cell) => cell === 'r' || cell === 't' || cell === 'o')
-    .length;
+  const unclearedCellsCount = getUnclearedCells(state.siteClearingSimulator.map).length;
   
   return unclearedCellsCount * UNCLEARED_CELL_COST;
 };

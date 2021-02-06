@@ -2,6 +2,7 @@ import { Card, Typography, CardContent } from '@material-ui/core'
 import React, { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { startSimulation } from '../store/store-slice';
+import { getSiteMapFromFile } from './get-site-map-from-file';
 import styles from './styles.module.css';
 
 export const SimulationFileInput = () => {
@@ -19,10 +20,7 @@ export const SimulationFileInput = () => {
       const mapFile = uploadedFiles[0];
       const textContent = await mapFile.text();
 
-      const siteRows = textContent.split('\n');
-      const siteMap = [
-        ...siteRows.map((row) => row.split(''))
-      ];
+      const siteMap = getSiteMapFromFile(textContent);
 
       dispatch(startSimulation(siteMap));
     }

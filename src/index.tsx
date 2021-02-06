@@ -6,9 +6,6 @@ import App from './app/App';
 import reportWebVitals from './reportWebVitals';
 import { store } from './store';
 
-// TODO: Barrels
-// TODO: Cover remaining places with tests
-
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>

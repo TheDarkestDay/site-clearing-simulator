@@ -155,6 +155,28 @@ describe("Site clearing simulator store slice", () => {
 
         expect(bulldozerDirection).toEqual(BulldozerDirection.Up);
       });
+
+      it("should correctly switch direction from left to up", () => {
+        const { bulldozerDirection } = siteClearingSimulatorReducer(
+          getTestState({
+            bulldozerDirection: BulldozerDirection.Left
+          }),
+          rotateRight()
+        );
+
+        expect(bulldozerDirection).toEqual(BulldozerDirection.Up);
+      });
+
+      it("should correctly switch direction from up to left", () => {
+        const { bulldozerDirection } = siteClearingSimulatorReducer(
+          getTestState({
+            bulldozerDirection: BulldozerDirection.Up
+          }),
+          rotateLeft()
+        );
+
+        expect(bulldozerDirection).toEqual(BulldozerDirection.Left);
+      });
     });
 
     it("should correctly mark already visited cells", () => {
@@ -429,7 +451,7 @@ describe("Site clearing simulator store slice", () => {
       it("should stop automatically when there are no more fields to clear", () => {
         const siteMap: SiteCellType[][] = [
           ["B", "o"],
-          ["C", "C"],
+          ["T", "C"],
         ];
         const state = {
           isStarted: true,
