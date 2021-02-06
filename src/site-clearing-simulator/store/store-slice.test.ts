@@ -14,13 +14,13 @@ import { LogEntryType } from './log-entry-type';
 
 describe("Site clearing simulator store slice", () => {
   describe("reducer", () => {
-    const siteMap: SiteCellType[][] = [
+    const testSiteMap: SiteCellType[][] = [
       ["o", "o", "T"],
       ["r", "o", "r"],
       ["t", "t", "t"],
     ];
 
-    const siteMapInProgress: SiteCellType[][] = [
+    const testSiteMapInProgress: SiteCellType[][] = [
       ["o", "o", "T"],
       ["r", "B", "r"],
       ["t", "t", "t"],
@@ -29,7 +29,7 @@ describe("Site clearing simulator store slice", () => {
     it("should allow to start simulation", () => {
       const { isStarted } = siteClearingSimulatorReducer(
         getTestState(),
-        startSimulation(siteMap)
+        startSimulation(testSiteMap)
       );
 
       expect(isStarted).toEqual(true);
@@ -38,7 +38,7 @@ describe("Site clearing simulator store slice", () => {
     it("should not have bulldozer present on the map on simulation start", () => {
       const { map } = siteClearingSimulatorReducer(
         getTestState(),
-        startSimulation(siteMap)
+        startSimulation(testSiteMap)
       );
 
       const allCells = map.reduce((total, row) => {
@@ -50,7 +50,7 @@ describe("Site clearing simulator store slice", () => {
 
     it("should allow to reset simulation", () => {
       const originalState = getTestState({
-        map: siteMapInProgress,
+        map: testSiteMapInProgress,
         fuelUsed: 4,
         bulldozerPosition: {
           x: 1,
@@ -72,7 +72,7 @@ describe("Site clearing simulator store slice", () => {
       it("should correctly move bulldozer up", () => {
         const state = {
           isStarted: true,
-          map: siteMapInProgress,
+          map: testSiteMapInProgress,
           bulldozerPosition: { x: 1, y: 1 },
           bulldozerDirection: BulldozerDirection.Up,
         };
@@ -89,7 +89,7 @@ describe("Site clearing simulator store slice", () => {
       it("should correctly move bulldozer to the right", () => {
         const state = {
           isStarted: true,
-          map: siteMapInProgress,
+          map: testSiteMapInProgress,
           bulldozerPosition: { x: 1, y: 1 },
         };
         const {
@@ -106,7 +106,7 @@ describe("Site clearing simulator store slice", () => {
         const state = {
           isStarted: true,
           bulldozerPosition: { x: 1, y: 1 },
-          map: siteMapInProgress,
+          map: testSiteMapInProgress,
           bulldozerDirection: BulldozerDirection.Down,
         };
         const {
@@ -123,7 +123,7 @@ describe("Site clearing simulator store slice", () => {
         const state = {
           isStarted: true,
           bulldozerPosition: { x: 1, y: 1 },
-          map: siteMapInProgress,
+          map: testSiteMapInProgress,
           bulldozerDirection: BulldozerDirection.Left,
         };
         const {
@@ -182,7 +182,7 @@ describe("Site clearing simulator store slice", () => {
     it("should correctly mark already visited cells", () => {
       const state = {
         isStarted: true,
-        map: siteMap,
+        map: testSiteMap,
         bulldozerPosition: { x: 1, y: 1 },
         bulldozerDirection: BulldozerDirection.Left,
       };
@@ -219,7 +219,7 @@ describe("Site clearing simulator store slice", () => {
       it("should correctly track plain land clearing fuel usage", () => {
         const state = {
           isStarted: true,
-          map: siteMapInProgress,
+          map: testSiteMapInProgress,
           bulldozerPosition: { x: 1, y: 1 },
           bulldozerDirection: BulldozerDirection.Up,
         };
@@ -234,7 +234,7 @@ describe("Site clearing simulator store slice", () => {
       it("should correctly track rocky land clearing fuel usage", () => {
         const state = {
           isStarted: true,
-          map: siteMapInProgress,
+          map: testSiteMapInProgress,
           bulldozerPosition: { x: 1, y: 1 },
           bulldozerDirection: BulldozerDirection.Left,
         };
@@ -249,7 +249,7 @@ describe("Site clearing simulator store slice", () => {
       it("should correctly track regular tree clearing fuel usage", () => {
         const state = {
           isStarted: true,
-          map: siteMapInProgress,
+          map: testSiteMapInProgress,
           bulldozerPosition: { x: 1, y: 1 },
           bulldozerDirection: BulldozerDirection.Down,
         };
@@ -293,7 +293,7 @@ describe("Site clearing simulator store slice", () => {
 
       it('should properly log move forward', () => {
         const testState = getTestState({
-          map: siteMapInProgress,
+          map: testSiteMapInProgress,
           bulldozerPosition: {
             x: 1,
             y: 1,
