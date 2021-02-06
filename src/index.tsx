@@ -6,13 +6,8 @@ import App from './app/App';
 import reportWebVitals from './reportWebVitals';
 import { store } from './store';
 
-// TODO: Preservable tree fine
 // TODO: Errored cell highlight
-// TODO: Bug with moving to the previously cleared cell
-// TODO: Mobile layout
-// TODO: Enforce width for log
 // TODO: Barrels
-// TODO: Fix tests
 // TODO: Cover remaining places with tests
 
 ReactDOM.render(

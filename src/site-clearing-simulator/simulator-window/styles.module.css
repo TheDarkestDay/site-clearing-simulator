@@ -4,6 +4,7 @@
     'map map report'
     'map map log'
     'controlPanel controlPanel log';
+  grid-template-columns: 1fr 1fr 320px;
   grid-gap: 16px;
 }
 
@@ -21,4 +22,15 @@
 
 .controlPanel {
   grid-area: controlPanel;
+}
+
+@media (max-width: 768px) {
+  .simulatorWindowGrid {
+    grid-template-areas: 
+      'map'
+      'controlPanel'
+      'report'
+      'log';
+    grid-template-columns: 1fr;
+  }
 }

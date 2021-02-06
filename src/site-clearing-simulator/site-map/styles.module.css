@@ -1,3 +1,7 @@
+.siteMapWindow {
+  overflow: auto;
+}
+
 .siteMapWrapper {
   padding: 8px;
   display: flex;
