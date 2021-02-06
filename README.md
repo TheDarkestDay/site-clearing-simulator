@@ -20,7 +20,7 @@ The primary tech stack for this project consists of the following libraries and 
 
 ## Design
 
-On a high-level this application is structured in application-feature fashion, where each folder corresponds to some particular application concern.
+On a high-level this application is structured in application-feature fashion, where each folder corresponds to some specific application concern.
 
 In particular, we have the following folders inside `src` folder:
 
